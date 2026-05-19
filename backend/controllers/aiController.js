@@ -1,57 +1,68 @@
+const axios = require("axios");
+
 exports.analyzeComplaint = async (req, res) => {
 
   try {
 
-    const { description } = req.body;
+    const { description, category } = req.body;
 
-    let priority = "Low";
+    const prompt = `
+Analyze this complaint and return ONLY valid JSON.
 
-    let department = "General Department";
+Complaint:
+${description}
 
-    if (
-      description.toLowerCase().includes("water")
-    ) {
+Category:
+${category}
 
-      priority = "Medium";
+Return in this format:
 
-      department = "Water Department";
-    }
+{
+  "priority":"",
+  "department":"",
+  "summary":"",
+  "aiResponse":""
+}
+`;
 
-    if (
-      description.toLowerCase().includes("electricity")
-    ) {
+    const response = await axios.post(
 
-      priority = "High";
+      "https://openrouter.ai/api/v1/chat/completions",
 
-      department = "Electricity Department";
-    }
+      {
+        model: "openai/gpt-3.5-turbo",
 
-    if (
-      description.toLowerCase().includes("garbage")
-    ) {
+        messages: [
+          {
+            role: "user",
+            content: prompt,
+          },
+        ],
+      },
 
-      priority = "Medium";
+      {
+        headers: {
+          Authorization:
+            `Bearer ${process.env.OPENROUTER_API_KEY}`,
 
-      department = "Sanitation Department";
-    }
+          "Content-Type": "application/json",
+        },
+      }
+    );
 
-    const summary =
-      description.substring(0, 60);
+    const result =
+      response.data.choices[0].message.content;
 
-    const aiResponse =
-      "Your complaint has been registered successfully and forwarded to the concerned department.";
+    const parsedResult = JSON.parse(result);
 
-    res.json({
-      priority,
-      department,
-      summary,
-      aiResponse,
-    });
+    res.json(parsedResult);
 
   } catch (error) {
 
+    console.log(error.response?.data || error.message);
+
     res.status(500).json({
-      message: error.message,
+      message: "AI Analysis Failed",
     });
   }
 };
