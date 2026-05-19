@@ -22,48 +22,37 @@
   background:#1e293b;
   padding:25px;
   border-radius:20px;
-  box-shadow:0 0 20px rgba(0,0,0,0.4);
-  transition:0.3s;
-}
-
-.complaint-card:hover{
-  transform:translateY(-6px);
 }
 
 .complaint-card h2{
   color:white;
-  font-size:34px;
-  margin-bottom:12px;
+  margin-bottom:10px;
 }
 
 .description{
   color:#cbd5e1;
-  margin-bottom:18px;
-  font-size:18px;
+  margin-bottom:15px;
 }
 
 .complaint-card p{
   color:white;
-  margin:10px 0;
-  font-size:18px;
+  margin:8px 0;
 }
 
 .ai-box{
-  margin-top:25px;
+  margin-top:20px;
   padding:20px;
   background:#111827;
-  border:1px solid #6366f1;
-  border-radius:16px;
+  border:2px solid #6366f1;
+  border-radius:15px;
 }
 
 .ai-box h3{
   color:#818cf8;
   margin-bottom:15px;
-  font-size:24px;
 }
 
 .ai-box p{
   color:white;
-  margin:10px 0;
-  line-height:1.5;
+  margin:8px 0;
 }

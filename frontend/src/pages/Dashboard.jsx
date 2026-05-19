@@ -24,7 +24,6 @@ const Dashboard = () => {
 
       console.log(error);
 
-      alert("Failed to load complaints");
     }
   };
 
@@ -67,6 +66,8 @@ const Dashboard = () => {
               <strong>Department:</strong>{" "}
               {complaint.department}
             </p>
+
+            {/* AI BOX */}
 
             <div className="ai-box">
 
