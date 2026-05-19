@@ -1,5 +1,5 @@
 import {
-  BrowserRouter,
+  HashRouter,
   Routes,
   Route,
 } from "react-router-dom";
@@ -16,7 +16,7 @@ function App() {
 
   return (
 
-    <BrowserRouter>
+    <HashRouter>
 
       <Navbar />
 
@@ -52,7 +52,7 @@ function App() {
 
       </Routes>
 
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 
