@@ -4,9 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node server.js",
-    "dev": "nodemon server.js"
-  },
+  "dev": "vite",
+  "build": "vite build && cp public/_redirects dist/_redirects",
+  "preview": "vite preview"
+},
   "keywords": [],
   "author": "",
   "license": "ISC",
