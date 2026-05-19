@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
-
 import API from "../services/api";
+import "./Dashboard.css";
 
-function Dashboard() {
+const Dashboard = () => {
 
-  const [complaints, setComplaints] =
-    useState([]);
+  const [complaints, setComplaints] = useState([]);
 
   useEffect(() => {
 
@@ -17,59 +16,95 @@ function Dashboard() {
 
     try {
 
-      const res = await API.get(
-        "/complaints"
-      );
+      const res = await API.get("/complaints");
 
       setComplaints(res.data);
 
     } catch (error) {
 
       console.log(error);
+
+      alert("Failed to load complaints");
     }
   };
 
   return (
 
-    <div className="dashboard">
+    <div className="dashboard-container">
 
-      <h1>All Complaints</h1>
+      <h1 className="dashboard-title">
+        All Complaints
+      </h1>
 
-      <div className="card-grid">
+      <div className="complaints-grid">
 
-        {complaints.map((item) => (
+        {complaints.map((complaint) => (
 
           <div
             className="complaint-card"
-            key={item._id}
+            key={complaint._id}
           >
 
-            <h2>{item.title}</h2>
+            <h2>
+              {complaint.title}
+            </h2>
 
-            <p>{item.description}</p>
-
-            <p>
-              <strong>Status:</strong>
-              {item.status}
+            <p className="description">
+              {complaint.description}
             </p>
 
             <p>
-              <strong>Priority:</strong>
-              {item.priority}
+              <strong>Status:</strong>{" "}
+              {complaint.status}
             </p>
 
             <p>
-              <strong>Department:</strong>
-              {item.department}
+              <strong>Priority:</strong>{" "}
+              {complaint.priority}
             </p>
+
+            <p>
+              <strong>Department:</strong>{" "}
+              {complaint.department}
+            </p>
+
+            <div className="ai-box">
+
+              <h3>
+                🤖 AI Analysis
+              </h3>
+
+              <p>
+                AI detected this complaint as{" "}
+                <strong>
+                  {complaint.priority}
+                </strong>{" "}
+                priority.
+              </p>
+
+              <p>
+                Suggested Department:
+                <strong>
+                  {" "}
+                  {complaint.department}
+                </strong>
+              </p>
+
+              <p>
+                AI Response:
+                Complaint forwarded successfully.
+              </p>
+
+            </div>
 
           </div>
+
         ))}
 
       </div>
 
     </div>
   );
-}
+};
 
 export default Dashboard;

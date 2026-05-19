@@ -1,0 +1,64 @@
+.dashboard-container{
+  min-height:100vh;
+  background:#020617;
+  padding:40px;
+}
+
+.dashboard-title{
+  color:white;
+  font-size:48px;
+  margin-bottom:40px;
+}
+
+.complaints-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(400px,1fr));
+  gap:30px;
+}
+
+.complaint-card{
+  background:#1e293b;
+  padding:25px;
+  border-radius:20px;
+  box-shadow:0 0 15px rgba(0,0,0,0.4);
+  transition:0.3s;
+}
+
+.complaint-card:hover{
+  transform:translateY(-5px);
+}
+
+.complaint-card h2{
+  color:white;
+  margin-bottom:10px;
+  font-size:32px;
+}
+
+.description{
+  color:#cbd5e1;
+  margin-bottom:15px;
+}
+
+.complaint-card p{
+  color:white;
+  margin:8px 0;
+  font-size:18px;
+}
+
+.ai-box{
+  margin-top:20px;
+  padding:18px;
+  background:#111827;
+  border:1px solid #6366f1;
+  border-radius:15px;
+}
+
+.ai-box h3{
+  color:#818cf8;
+  margin-bottom:15px;
+}
+
+.ai-box p{
+  color:white;
+  margin:8px 0;
+}
