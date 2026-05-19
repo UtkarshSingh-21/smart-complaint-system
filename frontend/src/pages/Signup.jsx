@@ -31,8 +31,13 @@ function Signup() {
 
     } catch (error) {
 
-      alert("Signup Failed");
-    }
+  console.log(error);
+
+  alert(
+    error?.response?.data?.message ||
+    error.message
+  );
+}
   };
 
   return (

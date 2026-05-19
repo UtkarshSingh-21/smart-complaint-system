@@ -33,8 +33,13 @@ function Login() {
 
     } catch (error) {
 
-      alert("Login Failed");
-    }
+  console.log(error);
+
+  alert(
+    error?.response?.data?.message ||
+    error.message
+  );
+}
   };
 
   return (
