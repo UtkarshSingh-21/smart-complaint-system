@@ -75,24 +75,23 @@ const Dashboard = () => {
               </h3>
 
               <p>
-                AI detected this complaint as{" "}
-                <strong>
-                  {complaint.priority}
-                </strong>{" "}
-                priority.
+                <strong>AI Priority:</strong>{" "}
+                {complaint.priority}
               </p>
 
               <p>
-                Suggested Department:
-                <strong>
-                  {" "}
-                  {complaint.department}
-                </strong>
+                <strong>AI Department:</strong>{" "}
+                {complaint.department}
               </p>
 
               <p>
-                AI Response:
-                Complaint forwarded successfully.
+                <strong>AI Summary:</strong>{" "}
+                {complaint.aiSummary}
+              </p>
+
+              <p>
+                <strong>AI Response:</strong>{" "}
+                {complaint.aiResponse}
               </p>
 
             </div>

@@ -12,7 +12,9 @@
 
 .complaints-grid{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(400px,1fr));
+  grid-template-columns:
+  repeat(auto-fit,minmax(420px,1fr));
+
   gap:30px;
 }
 
@@ -20,45 +22,48 @@
   background:#1e293b;
   padding:25px;
   border-radius:20px;
-  box-shadow:0 0 15px rgba(0,0,0,0.4);
+  box-shadow:0 0 20px rgba(0,0,0,0.4);
   transition:0.3s;
 }
 
 .complaint-card:hover{
-  transform:translateY(-5px);
+  transform:translateY(-6px);
 }
 
 .complaint-card h2{
   color:white;
-  margin-bottom:10px;
-  font-size:32px;
+  font-size:34px;
+  margin-bottom:12px;
 }
 
 .description{
   color:#cbd5e1;
-  margin-bottom:15px;
+  margin-bottom:18px;
+  font-size:18px;
 }
 
 .complaint-card p{
   color:white;
-  margin:8px 0;
+  margin:10px 0;
   font-size:18px;
 }
 
 .ai-box{
-  margin-top:20px;
-  padding:18px;
+  margin-top:25px;
+  padding:20px;
   background:#111827;
   border:1px solid #6366f1;
-  border-radius:15px;
+  border-radius:16px;
 }
 
 .ai-box h3{
   color:#818cf8;
   margin-bottom:15px;
+  font-size:24px;
 }
 
 .ai-box p{
   color:white;
-  margin:8px 0;
+  margin:10px 0;
+  line-height:1.5;
 }

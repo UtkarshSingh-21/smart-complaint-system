@@ -1,97 +1,122 @@
-const Complaint = require("../models/Complaint");
+const Complaint =
+require("../models/Complaint");
 
-exports.addComplaint = async (req, res) => {
+const axios = require("axios");
 
-  try {
+exports.createComplaint =
+async (req,res)=>{
 
-    const complaint = await Complaint.create(
-      req.body
-    );
+  try{
 
-    res.status(201).json({
-      message: "Complaint Added",
-      complaint,
-    });
+    const {
+      name,
+      email,
+      title,
+      description,
+      category,
+      location,
+    } = req.body;
 
-  } catch (error) {
+    let priority = "Low";
+    let department = "General Department";
+    let aiSummary = "";
+    let aiResponse = "";
 
-    res.status(500).json({
-      message: error.message,
-    });
-  }
-};
+    // AI Logic
 
-exports.getComplaints = async (req, res) => {
+    if(
+      description.toLowerCase().includes("water")
+    ){
 
-  try {
+      priority = "Medium";
 
-    const complaints = await Complaint.find();
+      department =
+      "Water Department";
 
-    res.json(complaints);
+      aiSummary =
+      "Water leakage issue detected.";
 
-  } catch (error) {
+      aiResponse =
+      "Water department has been notified.";
+    }
 
-    res.status(500).json({
-      message: error.message,
-    });
-  }
-};
+    if(
+      description.toLowerCase().includes("electricity")
+    ){
 
-exports.updateComplaint = async (req, res) => {
+      priority = "High";
 
-  try {
+      department =
+      "Electricity Department";
+
+      aiSummary =
+      "Electricity issue detected.";
+
+      aiResponse =
+      "Urgent electricity complaint forwarded.";
+    }
+
+    if(
+      description.toLowerCase().includes("garbage")
+    ){
+
+      priority = "Medium";
+
+      department =
+      "Sanitation Department";
+
+      aiSummary =
+      "Garbage issue detected.";
+
+      aiResponse =
+      "Sanitation team notified.";
+    }
 
     const complaint =
-      await Complaint.findByIdAndUpdate(
-        req.params.id,
-        req.body,
-        { new: true }
-      );
+    await Complaint.create({
 
-    res.json(complaint);
+      name,
+      email,
+      title,
+      description,
+      category,
+      location,
 
-  } catch (error) {
+      priority,
+      department,
+      aiSummary,
+      aiResponse,
 
-    res.status(500).json({
-      message: error.message,
     });
-  }
-};
 
-exports.deleteComplaint = async (req, res) => {
-
-  try {
-
-    await Complaint.findByIdAndDelete(
-      req.params.id
+    res.status(201).json(
+      complaint
     );
 
-    res.json({
-      message: "Complaint Deleted",
-    });
+  }catch(error){
 
-  } catch (error) {
+    console.log(error);
 
     res.status(500).json({
-      message: error.message,
+      message:error.message,
     });
   }
 };
 
-exports.searchComplaint = async (req, res) => {
+exports.getComplaints =
+async(req,res)=>{
 
-  try {
+  try{
 
-    const complaints = await Complaint.find({
-      location: req.query.location,
-    });
+    const complaints =
+    await Complaint.find();
 
     res.json(complaints);
 
-  } catch (error) {
+  }catch(error){
 
     res.status(500).json({
-      message: error.message,
+      message:error.message,
     });
   }
 };
